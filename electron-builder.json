@@ -1,0 +1,53 @@
+{
+  "appId": "com.avilasha.app",
+  "productName": "Avilasha",
+  "copyright": "Copyright © 2025 Avilasha",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build-resources"
+  },
+  "files": [
+    "electron/dist/**/*",
+    "client/dist/**/*",
+    "package.json"
+  ],
+  "extraMetadata": {
+    "main": "electron/dist/main.js"
+  },
+  "mac": {
+    "category": "public.app-category.finance",
+    "target": ["dmg", "zip"],
+    "icon": "build-resources/icon.icns",
+    "darkModeSupport": true
+  },
+  "win": {
+    "target": ["nsis"],
+    "icon": "build-resources/icon.ico"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "category": "Finance",
+    "icon": "build-resources/icons"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Avilasha"
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  }
+}

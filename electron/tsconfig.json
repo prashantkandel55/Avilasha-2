@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": false,
+    "outDir": "../dist-electron",
+    "rootDir": ".",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "lib": ["DOM", "ES2018"],
+    "types": ["node"]
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules"]
+}

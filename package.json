@@ -1,0 +1,41 @@
+{
+  "name": "avilasha-2",
+  "version": "0.1.0",
+  "description": "A modern desktop application for managing cryptocurrency assets",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "cd client && npm run dev",
+    "dev:electron": "tsc -p electron && wait-on tcp:5173 && cross-env NODE_ENV=development electron .",
+    "build": "cd client && npm run build && tsc -p electron",
+    "package": "electron-builder --config electron-builder.json",
+    "package:win": "electron-builder --win --config electron-builder.json",
+    "package:mac": "electron-builder --mac --config electron-builder.json",
+    "package:linux": "electron-builder --linux --config electron-builder.json",
+    "build:all": "npm run build && npm run package",
+    "build:win": "npm run build && npm run package:win",
+    "build:mac": "npm run build && npm run package:mac",
+    "build:linux": "npm run build && npm run package:linux",
+    "test:vite": "cd client && npm run dev"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "electron-squirrel-startup": "^1.0.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@types/node": "^20.10.5",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.1.0",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.3.3",
+    "wait-on": "^7.2.0"
+  }
+}

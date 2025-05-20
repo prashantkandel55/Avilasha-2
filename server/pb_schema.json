@@ -1,0 +1,272 @@
+{
+  "collections": [
+    {
+      "name": "users",
+      "type": "auth",
+      "schema": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "avatar",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "role",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": ["user", "admin"]
+          },
+          "default": "user"
+        },
+        {
+          "name": "verified",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "tokens",
+      "schema": [
+        {
+          "name": "symbol",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "image",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "current_price",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "market_cap",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "market_cap_rank",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "price_change_percentage_24h",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": false
+          }
+        },
+        {
+          "name": "is_favorite",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "portfolio",
+      "schema": [
+        {
+          "name": "token_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "tokens",
+            "cascadeDelete": true
+          }
+        },
+        {
+          "name": "user_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": true
+          }
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "purchase_price",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "purchase_date",
+          "type": "date",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "transactions",
+      "schema": [
+        {
+          "name": "user_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": true
+          }
+        },
+        {
+          "name": "token_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "tokens",
+            "cascadeDelete": false
+          }
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": ["buy", "sell", "transfer_in", "transfer_out"]
+          }
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "fee",
+          "type": "number",
+          "required": false,
+          "default": 0
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "wallets",
+      "schema": [
+        {
+          "name": "user_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": true
+          }
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": ["hot", "cold", "exchange", "other"]
+          }
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "balance",
+          "type": "number",
+          "required": true,
+          "default": 0
+        },
+        {
+          "name": "is_default",
+          "type": "bool",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "notifications",
+      "schema": [
+        {
+          "name": "user_id",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": true
+          }
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": ["info", "success", "warning", "error"]
+          }
+        },
+        {
+          "name": "is_read",
+          "type": "bool",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "link",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
